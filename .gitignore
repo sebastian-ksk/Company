@@ -1,0 +1,49 @@
+# Archivos de compilación y binarios
+[Bb]in/
+[Oo]bj/
+[Ll]ogs/
+[Tt]est[Rr]esults/
+
+# Archivos temporales de Visual Studio
+.vs/
+.vscode/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Paquetes NuGet
+**/[Pp]ackages/*
+!**/[Pp]ackages/build/
+*.nupkg
+*.snupkg
+
+# Carpetas de herramientas de desarrollo
+/tools/
+/packages/
+
+# Archivos de configuración local
+appsettings.json
+appsettings.Development.json
+appsettings.Production.json
+
+# Archivos generados durante la ejecución
+*.log
+*.sqlite
+
+# Dependencias
+node_modules/
+
+# Carpetas y archivos específicos de las capas
+# Asegúrate de ajustar estas rutas según la estructura de tu proyecto
+# API Layer
+api_layer_specific_folder/
+api_layer_specific_file.ext
+
+# DAL Layer
+dal_layer_specific_folder/
+dal_layer_specific_file.ext
+
+# BLL Layer
+bll_layer_specific_folder/
+bll_layer_specific_file.ext
