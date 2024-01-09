@@ -10,4 +10,9 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.25" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\AdsPharma.DAL\Company.DAL.csproj" />
+    <ProjectReference Include="..\Company.Models\Company.Models.csproj" />
+  </ItemGroup>
+
 </Project>

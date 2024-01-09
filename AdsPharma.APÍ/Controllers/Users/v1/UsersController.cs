@@ -1,4 +1,5 @@
-﻿using Company.Models.Entities.Users;
+﻿using Company.BLL.Services;
+using Company.Models.Entities.Users;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Company.API.Controllers.Users.v1
@@ -8,14 +9,24 @@ namespace Company.API.Controllers.Users.v1
     public class UsersController : ControllerBase
     {
 
-        [HttpGet(Name = "GetUsers")]
+        public readonly IUserService _userService;
+        public UsersController(IUserService service) {
+            _userService = service;
+        }
+
+        [HttpGet]
         public ActionResult<List<UserEntity>> ActionResult()
         {
-            return new List<UserEntity>()
+            try
             {
-                new UserEntity() { Id = 1, Name = "User 1" },
-                new UserEntity() { Id = 2, Name = "User 2" },
-            };
+                var users = _userService.GetUsers();
+                return Ok(users);
+            }
+            catch (System.Exception)
+            {
+                return BadRequest();
+            }
+            
         }
 
     }

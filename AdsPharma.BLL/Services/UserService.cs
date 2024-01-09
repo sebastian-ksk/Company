@@ -3,24 +3,30 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Company.DAL.Repositories;
+using Company.Models.Entities.Users;
 
 namespace Company.BLL.Services
 {
 
     public interface IUserService
     {
-
+        public List<UserEntity> GetUsers();
     }
 
-    public class UserService
+    public class UserService: IUserService
     {
-        public readonly string _connectionString;
+       
+        public readonly IUsersRepository _usersRepository;
 
-        public UserService(string connectionString)
+        public UserService(IUsersRepository repository)
         {
-            _connectionString = connectionString;
+            _usersRepository = repository;
         }
 
-
+        public List<UserEntity> GetUsers()
+        {
+            return _usersRepository.GetUsersRep();  
+        }
     }
 }

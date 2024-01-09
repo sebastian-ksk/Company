@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using Company.BLL.Services;
+using Company.DAL.Repositories;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.AspNetCore.Diagnostics;
@@ -36,7 +38,7 @@ namespace Company.API
         {
           
 
-            string user = "SA";
+            string user = "sa";
             string password = "123456789";
             string server = "LOCALHOST";
             string database = "AdsProduccion";
@@ -56,6 +58,10 @@ namespace Company.API
             });
             services.AddMvcCore();
             services.AddEndpointsApiExplorer();
+
+            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IUsersRepository, UsersRepository>();
+
 
 
         }
