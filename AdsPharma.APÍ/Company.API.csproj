@@ -15,6 +15,7 @@
   <ItemGroup>
     <ProjectReference Include="..\AdsPharma.BLL\Company.BLL.csproj" />
     <ProjectReference Include="..\AdsPharma.DAL\Company.DAL.csproj" />
+    <ProjectReference Include="..\Company.Models\Company.Models.csproj" />
   </ItemGroup>
 
 </Project>

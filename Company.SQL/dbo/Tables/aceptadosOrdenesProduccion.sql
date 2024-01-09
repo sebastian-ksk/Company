@@ -1,0 +1,26 @@
+﻿CREATE TABLE [dbo].[aceptadosOrdenesProduccion] (
+    [Id]               INT            IDENTITY (1, 1) NOT NULL,
+    [Orden_Produccion] NVARCHAR (MAX) NULL,
+    [Producto]         NVARCHAR (MAX) NULL,
+    [IdPadre]          NVARCHAR (MAX) NULL,
+    [Lote]             NVARCHAR (MAX) NULL,
+    [FecVenc]          DATETIME       NULL,
+    [AutorizoJefeProd] NVARCHAR (MAX) NULL,
+    [FirmaJefeProd]    NVARCHAR (MAX) NULL,
+    [FechaElabJefe]    DATETIME       NULL,
+    [Archivo]          NVARCHAR (MAX) NULL,
+    [ArchivoResmumen]  NVARCHAR (MAX) NULL,
+    [EstadoGeneral]    INT            NULL,
+    [DataEncabez]      NVARCHAR (MAX) NULL,
+    [PrincActivos]     NVARCHAR (MAX) NULL,
+    [DosActivos]       BIT            NULL,
+    [SumaPotActivos]   NVARCHAR (MAX) NULL,
+    [Excipientes]      NVARCHAR (MAX) NULL,
+    [EnvEmp]           NVARCHAR (MAX) NULL,
+    [Tipo]             NCHAR (10)     NULL,
+    [EstadoDisp]       INT            NULL,
+    [EstadoLavSan]     INT            NULL,
+    [Ruta]             NCHAR (10)     NULL,
+    [EstadoAferEnvase] INT            NULL
+);
+

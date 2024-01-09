@@ -1,0 +1,27 @@
+﻿CREATE TABLE [dbo].[conDetall_Maq] (
+    [Id]                 INT            IDENTITY (1, 1) NOT NULL,
+    [Numero]             BIGINT         NULL,
+    [FecElab]            DATETIME       NULL,
+    [Nombre]             NVARCHAR (MAX) NULL,
+    [Lote]               NVARCHAR (MAX) NULL,
+    [FecExpira]          NVARCHAR (MAX) NULL,
+    [Cantidad]           BIGINT         NULL,
+    [EstadoAlm]          BIT            NULL,
+    [EstadoAseg]         BIT            NULL,
+    [EstadoCtrlCalid]    BIT            NULL,
+    [Codigo_producto]    NVARCHAR (MAX) NULL,
+    [IdUniMed]           NCHAR (10)     NULL,
+    [FileAlm]            NVARCHAR (MAX) NULL,
+    [FileAseg]           NVARCHAR (MAX) NULL,
+    [FileCtrlCal]        NVARCHAR (MAX) NULL,
+    [FileExt]            NVARCHAR (MAX) NULL,
+    [NuAnalisisAlm]      BIGINT         NULL,
+    [NuAnalisisCrtlCal]  BIGINT         NULL,
+    [NuAnalisisAseg]     BIGINT         NULL,
+    [Cantidad2]          FLOAT (53)     NULL,
+    [FecExpira2]         DATETIME       NULL,
+    [NuAnalisisAlmT]     NVARCHAR (MAX) NULL,
+    [NuAnalisisCrtlCalT] NVARCHAR (MAX) NULL,
+    [NuAnalisisAsegT]    NVARCHAR (MAX) NULL
+);
+

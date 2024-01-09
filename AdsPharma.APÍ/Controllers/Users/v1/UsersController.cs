@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Company.Models.Entities.Users;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Company.API.Controllers.Users.v1
 {
@@ -8,9 +9,13 @@ namespace Company.API.Controllers.Users.v1
     {
 
         [HttpGet(Name = "GetUsers")]
-        public ActionResult ActionResult()
+        public ActionResult<List<UserEntity>> ActionResult()
         {
-            return Ok();
+            return new List<UserEntity>()
+            {
+                new UserEntity() { Id = 1, Name = "User 1" },
+                new UserEntity() { Id = 2, Name = "User 2" },
+            };
         }
 
     }

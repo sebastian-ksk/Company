@@ -1,0 +1,28 @@
+﻿CREATE TABLE [dbo].[conDetall_Produc] (
+    [Id]                 INT            IDENTITY (1, 1) NOT NULL,
+    [Numero]             BIGINT         NULL,
+    [nombre_tercero]     NVARCHAR (MAX) NULL,
+    [Nombre_Producto]    NVARCHAR (MAX) NULL,
+    [Lote]               NVARCHAR (MAX) NULL,
+    [Cantidad]           FLOAT (53)     NULL,
+    [Orden_Compra]       BIGINT         NULL,
+    [Fecha]              NVARCHAR (MAX) NULL,
+    [EstadoAlm]          BIT            NULL,
+    [EstadoAseg]         BIT            NULL,
+    [EstadoCtrlCalid]    BIT            NULL,
+    [Codigo_producto]    NVARCHAR (MAX) NULL,
+    [IdUniMed]           NCHAR (10)     NULL,
+    [FileAlm]            NVARCHAR (MAX) NULL,
+    [FileAseg]           NVARCHAR (MAX) NULL,
+    [FileCtrlCal]        NVARCHAR (MAX) NULL,
+    [FileExt]            NVARCHAR (MAX) NULL,
+    [Feecha]             DATETIME       NULL,
+    [NuAnalisisAlm]      BIGINT         NULL,
+    [NuAnalisisCrtlCal]  BIGINT         NULL,
+    [NuAnalisisAseg]     BIGINT         NULL,
+    [FechaVecn]          DATETIME       NULL,
+    [NuAnalisisAlmT]     NVARCHAR (MAX) NULL,
+    [NuAnalisisCrtlCalT] NVARCHAR (MAX) NULL,
+    [NuAnalisisAsegT]    NVARCHAR (MAX) NULL
+);
+
