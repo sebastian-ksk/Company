@@ -47,3 +47,43 @@ dal_layer_specific_file.ext
 # BLL Layer
 bll_layer_specific_folder/
 bll_layer_specific_file.ext
+
+# Archivos y carpetas de SQL Server
+*.mdf
+*.ldf
+*.ndf
+
+# Archivos de configuración SQL Server
+*.sdf
+*.dbmdl
+
+# Archivos generados por SQL Server Data Tools
+*.jfm
+*.dacpac
+*.bacpac
+*.pmdf
+
+# Carpetas de SQL Server
+App_Data/
+
+# Archivos de esquema de SQL Server
+*.dacschema
+*.sch
+
+# Archivos de backup de SQL Server
+*.bak
+*.trn
+*.log
+
+# Archivos de SQL Server Management Studio
+*.sqlproj.user
+*.ssdt.sqlproj.user
+*.dbmdl.sqlproj.user
+
+# Otros archivos y carpetas que generalmente se deben ignorar
+bin/
+obj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates

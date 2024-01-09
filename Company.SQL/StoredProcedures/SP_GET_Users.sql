@@ -15,10 +15,10 @@ BEGIN
       ,[Usuario]
       ,[Clave]
       ,[TipoUsr]
-      ,[Estado]
+      ,[Active]
       ,[Nombre]
       ,[Img]
       ,[Other]
       ,[PermissionsChecks]
-   FROM [AdsProduccion].[dbo].[UsuariosTabla]
+   FROM [dbo].[UsuariosTabla];
 END

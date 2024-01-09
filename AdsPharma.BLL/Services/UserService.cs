@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Company.DAL.Repositories;
 using Company.Models.Entities.Users;
+using Company.Models.Models.Users;
 
 namespace Company.BLL.Services
 {
@@ -12,6 +13,10 @@ namespace Company.BLL.Services
     public interface IUserService
     {
         public List<UserEntity> GetUsers();
+        public void CreateUser(User user);
+        public void UpdateUser(User user);
+        public void DeactivateUser(int userId);
+
     }
 
     public class UserService: IUserService
@@ -28,5 +33,23 @@ namespace Company.BLL.Services
         {
             return _usersRepository.GetUsersRep();  
         }
+
+        public void CreateUser(User user)
+        {
+            _usersRepository.CreateUser(user);
+        }
+
+        public void UpdateUser(User user)
+        {
+            _usersRepository.UpdateUser(user);
+        }
+
+        public void DeactivateUser(int userId)
+        {
+            _usersRepository.DeactivateUser(userId);
+        }
+
+
     }
+
 }
