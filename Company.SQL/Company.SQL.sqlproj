@@ -76,5 +76,8 @@
     <Build Include="dbo\Tables\ArchivosProtocoloProduccion.sql" />
     <Build Include="dbo\Tables\AdsFormularios.sql" />
     <Build Include="dbo\Tables\aceptadosOrdenesProduccion.sql" />
+    <Build Include="StoredProcedures\SP_POST_CreateUser.sql" />
+    <Build Include="StoredProcedures\SP_PUT_UpdateUser.sql" />
+    <Build Include="StoredProcedures\SP_DELETE_DeactivateUser.sql" />
   </ItemGroup>
 </Project>

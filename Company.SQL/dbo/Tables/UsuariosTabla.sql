@@ -3,10 +3,12 @@
     [Usuario]           NVARCHAR (MAX) NOT NULL,
     [Clave]             NVARCHAR (MAX) NOT NULL,
     [TipoUsr]           NVARCHAR (50)  NOT NULL,
-    [Estado]            BIT            NOT NULL,
+    [Active]            BIT            NOT NULL,
     [Nombre]            NVARCHAR (MAX) NOT NULL,
     [Img]               NVARCHAR (MAX) NOT NULL,
     [Other]             NVARCHAR (MAX) NOT NULL,
     [PermissionsChecks] NVARCHAR (MAX) NULL
 );
+
+
 
