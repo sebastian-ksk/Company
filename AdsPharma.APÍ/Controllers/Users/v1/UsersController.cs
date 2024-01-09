@@ -16,14 +16,14 @@ namespace Company.API.Controllers.Users.v1
         }
 
         [HttpGet]
-        public ActionResult<List<UserEntity>> ActionResult()
+        public ActionResult<List<User>> ActionResult()
         {
             try
             {
                 var users = _userService.GetUsers();
                 return Ok(users);
             }
-            catch (System.Exception)
+            catch (System.Exception ex)
             {
                 return BadRequest();
             }

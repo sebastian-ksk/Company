@@ -12,7 +12,7 @@ namespace Company.DAL.Repositories
 {
     public interface IUsersRepository
     {
-        public List<UserEntity> GetUsersRep();
+        public List<User> GetUsersRep();
         public void CreateUser(User user);
         public void UpdateUser(User user);
         public void DeactivateUser(int userId);
@@ -29,9 +29,9 @@ namespace Company.DAL.Repositories
 
         #region Methods
 
-        public List<UserEntity> GetUsersRep()
+        public List<User> GetUsersRep()
         {
-            var users = new List<UserEntity>();
+            var users = new List<User>();
             using (SqlConnection connection = new SqlConnection(_connectionString) )
             {
                 SqlCommand command = new SqlCommand("SP_GET_Users", connection);
@@ -40,11 +40,12 @@ namespace Company.DAL.Repositories
                 SqlDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
-                    users.Add(new UserEntity()
+                    users.Add(new User()
                     {
                         Id = Convert.ToInt32(reader["Id"]),
-                        Name = reader["Nombre"].ToString(),
-                        user = reader["Usuario"].ToString()
+                        Usuario = reader["Usuario"].ToString(),
+                        Clave = reader["Clave"].ToString(),
+
                     });
                 }
             }
@@ -56,7 +57,7 @@ namespace Company.DAL.Repositories
         {
             using (var connection = new SqlConnection(_connectionString))
             {
-                var command = new SqlCommand("SP_CreateUser", connection)
+                var command = new SqlCommand("SP_POST_CreateUser", connection)
                 {
                     CommandType = CommandType.StoredProcedure
                 };
@@ -64,7 +65,7 @@ namespace Company.DAL.Repositories
                 command.Parameters.AddWithValue("@Usuario", user.Usuario);
                 command.Parameters.AddWithValue("@Clave", user.Clave);
                 command.Parameters.AddWithValue("@TipoUsr", user.TipoUsr);
-                command.Parameters.AddWithValue("@Estado", user.Active);
+                command.Parameters.AddWithValue("@Active", user.Active);
                 command.Parameters.AddWithValue("@Nombre", user.Nombre);
                 command.Parameters.AddWithValue("@Img", user.Img);
                 command.Parameters.AddWithValue("@Other", user.Other);
@@ -79,7 +80,7 @@ namespace Company.DAL.Repositories
         {
             using (var connection = new SqlConnection(_connectionString))
             {
-                var command = new SqlCommand("SP_UpdateUser", connection)
+                var command = new SqlCommand("SP_PUT_UpdateUser", connection)
                 {
                     CommandType = CommandType.StoredProcedure
                 };
@@ -96,7 +97,7 @@ namespace Company.DAL.Repositories
         {
             using (var connection = new SqlConnection(_connectionString))
             {
-                var command = new SqlCommand("SP_DeactivateUser", connection)
+                var command = new SqlCommand("SP_DELETE_DeactivateUser", connection)
                 {
                     CommandType = CommandType.StoredProcedure
                 };

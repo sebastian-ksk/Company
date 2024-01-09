@@ -12,7 +12,7 @@ namespace Company.BLL.Services
 
     public interface IUserService
     {
-        public List<UserEntity> GetUsers();
+        public List<User> GetUsers();
         public void CreateUser(User user);
         public void UpdateUser(User user);
         public void DeactivateUser(int userId);
@@ -29,7 +29,7 @@ namespace Company.BLL.Services
             _usersRepository = repository;
         }
 
-        public List<UserEntity> GetUsers()
+        public List<User> GetUsers()
         {
             return _usersRepository.GetUsersRep();  
         }
