@@ -30,6 +30,21 @@ namespace Company.API.Controllers.Users.v1
             
         }
 
+        [HttpGet("{Id:int}")]
+        public async Task<ActionResult<List<User>>> ActionResultById( int Id)
+        {
+            try
+            {
+                var users = await _userService.GetUsers();
+                return Ok(users);
+            }
+            catch (System.Exception ex)
+            {
+                return BadRequest();
+            }
+
+        }
+
         [HttpPost]
         public ActionResult Post(User user)
         {

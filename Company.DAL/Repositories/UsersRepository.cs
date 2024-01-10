@@ -29,7 +29,7 @@ namespace Company.DAL.Repositories
 
         #region Methods
 
-        public async Task<List<User>> GetUsersRepAsync()
+        public async Task<List<User>> GetUsersRep()
         {
             var users = new List<User>();
             using (SqlConnection connection = new SqlConnection(_connectionString))
