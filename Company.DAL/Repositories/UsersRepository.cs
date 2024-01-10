@@ -12,7 +12,7 @@ namespace Company.DAL.Repositories
 {
     public interface IUsersRepository
     {
-        public List<User> GetUsersRep();
+        public Task<List<User>> GetUsersRep();
         public void CreateUser(User user);
         public void UpdateUser(User user);
         public void DeactivateUser(int userId);
@@ -29,28 +29,28 @@ namespace Company.DAL.Repositories
 
         #region Methods
 
-        public List<User> GetUsersRep()
+        public async Task<List<User>> GetUsersRepAsync()
         {
             var users = new List<User>();
-            using (SqlConnection connection = new SqlConnection(_connectionString) )
+            using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 SqlCommand command = new SqlCommand("SP_GET_Users", connection);
                 command.CommandType = System.Data.CommandType.StoredProcedure;
-                connection.Open();
-                SqlDataReader reader = command.ExecuteReader();
-                while (reader.Read())
+                await connection.OpenAsync();
+                using (SqlDataReader reader = await command.ExecuteReaderAsync())
                 {
-                    users.Add(new User()
+                    while (await reader.ReadAsync())
                     {
-                        Id = Convert.ToInt32(reader["Id"]),
-                        Usuario = reader["Usuario"].ToString(),
-                        Clave = reader["Clave"].ToString(),
-
-                    });
+                        users.Add(new User()
+                        {
+                            Id = Convert.ToInt32(reader["Id"]),
+                            Usuario = reader["Usuario"].ToString(),
+                            Clave = reader["Clave"].ToString(),
+                        });
+                    }
                 }
             }
             return users;
-            
         }
 
         public void CreateUser(User user)

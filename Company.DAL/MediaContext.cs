@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace AdsPharma.DAL
+namespace Company.DAL
 {
     public class MediaContext:DbContext
     {

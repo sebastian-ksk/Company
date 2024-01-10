@@ -54,7 +54,7 @@ namespace Company.API
             services.AddEndpointsApiExplorer();
            services.AddSwaggerGen(c =>
            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "AdsPharma.API", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Company.API", Version = "v1" });
             });
             services.AddMvcCore();
             services.AddEndpointsApiExplorer();

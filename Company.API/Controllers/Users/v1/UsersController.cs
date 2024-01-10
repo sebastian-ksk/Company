@@ -16,11 +16,11 @@ namespace Company.API.Controllers.Users.v1
         }
 
         [HttpGet]
-        public ActionResult<List<User>> ActionResult()
+        public async Task<ActionResult<List<User>>> ActionResult()
         {
             try
             {
-                var users = _userService.GetUsers();
+                var users = await _userService.GetUsers();
                 return Ok(users);
             }
             catch (System.Exception ex)

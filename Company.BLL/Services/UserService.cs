@@ -12,7 +12,7 @@ namespace Company.BLL.Services
 
     public interface IUserService
     {
-        public List<User> GetUsers();
+        public Task<List<User>> GetUsers();
         public void CreateUser(User user);
         public void UpdateUser(User user);
         public void DeactivateUser(int userId);
@@ -29,9 +29,9 @@ namespace Company.BLL.Services
             _usersRepository = repository;
         }
 
-        public List<User> GetUsers()
+        public async Task<List<User>> GetUsers()
         {
-            return _usersRepository.GetUsersRep();  
+            return await _usersRepository.GetUsersRep();  
         }
 
         public void CreateUser(User user)
