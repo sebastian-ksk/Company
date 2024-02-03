@@ -18,8 +18,4 @@
     <ProjectReference Include="..\Company.Models\Company.Models.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Middlewares\" />
-  </ItemGroup>
-
 </Project>

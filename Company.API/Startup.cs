@@ -1,4 +1,5 @@
-﻿using Company.API.Services;
+﻿using Company.API.Middlewares;
+using Company.API.Services;
 using Company.BLL.Services;
 using Company.DAL.DBConnections;
 using Company.DAL.Repositories;
@@ -19,7 +20,7 @@ using System.Text.Json.Serialization;
 
 namespace Company.API
 {
-    public class Startup
+    public class LoggerHttpResponseMidleware
     {
         public IConfiguration Configuration
         {
@@ -30,7 +31,7 @@ namespace Company.API
             get;
         }
 
-        public Startup(IConfiguration configuration, IWebHostEnvironment env)
+        public LoggerHttpResponseMidleware(IConfiguration configuration, IWebHostEnvironment env)
         {
             Configuration = configuration;
             WebHostEnvironment = env;
@@ -82,24 +83,10 @@ namespace Company.API
 
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILogger<Startup> logger)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILogger<LoggerHttpResponseMidleware> logger)
         {
 
-            app.Use(async (context, next) =>
-            {
-                await using (var ms = new MemoryStream())
-                {
-                    var body = context.Response.Body;
-                    context.Response.Body = ms;
-                    await next.Invoke();
-                    ms.Seek(0, SeekOrigin.Begin);
-                    await ms.CopyToAsync(body);
-                    string responseBody = Encoding.UTF8.GetString(ms.ToArray());
-                    //Console.WriteLine(responseBody);
-                    logger.LogInformation(responseBody);
-                    context.Response.Body = body;
-                }
-            });
+            //app.UseMiddleware<LoggerHttpResponseMidleware>();
 
 
             //Esto intercepta completamente el pipeline de request y response
@@ -119,6 +106,8 @@ namespace Company.API
             //);
             
 
+            app.UseLoggerHttpResponseMidleware();
+
             // Configure the HTTP request pipeline.
             if (env.IsEnvironment("Local") || env.IsDevelopment())
             {
@@ -127,6 +116,7 @@ namespace Company.API
             }
             app.UseHttpsRedirection();
             app.UseRouting();
+     
             app.UseCors();
             app.UseAuthentication();
             app.UseAuthorization();
