@@ -11,8 +11,11 @@ namespace Company.API.Controllers.Users.v1
     {
 
         public readonly IUserService _userService;
-        public UsersController(IUserService service) {
+        private readonly ILogger<UsersController> logger;
+
+        public UsersController(IUserService service,ILogger<UsersController> logger ) {
             _userService = service;
+            this.logger = logger;
         }
 
         [HttpGet]
@@ -20,6 +23,7 @@ namespace Company.API.Controllers.Users.v1
         {
             try
             {
+                logger.LogInformation("GetUsers");
                 var users = await _userService.GetUsers();
                 return Ok(users);
             }

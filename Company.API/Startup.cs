@@ -82,8 +82,43 @@ namespace Company.API
 
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILogger<Startup> logger)
         {
+
+            app.Use(async (context, next) =>
+            {
+                await using (var ms = new MemoryStream())
+                {
+                    var body = context.Response.Body;
+                    context.Response.Body = ms;
+                    await next.Invoke();
+                    ms.Seek(0, SeekOrigin.Begin);
+                    await ms.CopyToAsync(body);
+                    string responseBody = Encoding.UTF8.GetString(ms.ToArray());
+                    //Console.WriteLine(responseBody);
+                    logger.LogInformation(responseBody);
+                    context.Response.Body = body;
+                }
+            });
+
+
+            //Esto intercepta completamente el pipeline de request y response
+            //app.Run(async context =>
+            //{
+            //    await context.Response.WriteAsync("Hello World!");
+            //});
+            //app.Map("/error", app =>
+            //    app.Run(async context =>
+            //    {
+            //        var exceptionHandlerPathFeature = context.Features.Get<IExceptionHandlerPathFeature>();
+            //        var exception = exceptionHandlerPathFeature.Error;
+            //        var path = exceptionHandlerPathFeature.Path;
+            //        await context.Response.WriteAsync($"Error: {exception.Message}");
+            //    })
+              
+            //);
+            
+
             // Configure the HTTP request pipeline.
             if (env.IsEnvironment("Local") || env.IsDevelopment())
             {
