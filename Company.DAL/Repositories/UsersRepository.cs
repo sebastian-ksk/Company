@@ -4,6 +4,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Company.DAL.DBConnections;
 using Company.Models.Entities.Users;
 using Company.Models.Models.Users;
 using Microsoft.Data.SqlClient;
@@ -21,10 +22,12 @@ namespace Company.DAL.Repositories
     public class UsersRepository: IUsersRepository
     {
         public readonly string _connectionString;
+        public readonly CompanyContext companyContext;
        
-        public UsersRepository(string connectionString)
+        public UsersRepository(string connectionString, CompanyContext context)
         {
             _connectionString = connectionString;
+            companyContext = context;
         }
 
         #region Methods

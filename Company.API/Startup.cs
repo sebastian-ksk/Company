@@ -1,4 +1,6 @@
-﻿using Company.BLL.Services;
+﻿using Company.API.Services;
+using Company.BLL.Services;
+using Company.DAL.DBConnections;
 using Company.DAL.Repositories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Components.Forms;
@@ -44,8 +46,10 @@ namespace Company.API
             string database = "AdsProduccion";
             string connectionString = $"Server={server};Database={database};User Id={user};Password={password};TrustServerCertificate=true;";
 
-            services.AddSingleton(connectionString); // * Inyectar la cadena de conexión
+            services.AddSingleton(connectionString); 
 
+            //DB context se instancia en AddScoped para que se cree una nueva instancia por cada request
+            services.AddDbContext<CompanyContext>(options => options.UseSqlServer(connectionString)); 
             services.AddControllers().AddJsonOptions(options =>
             {
                 options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()); // * Para que los enums se serialicen como strings
@@ -59,8 +63,20 @@ namespace Company.API
             services.AddMvcCore();
             services.AddEndpointsApiExplorer();
 
+            //Type services
+            // AddScoped: Crea una nueva instancia por cada request
+            // AddSingleton: Crea una sola instancia por aplicación
+            // AddTransient: Crea una nueva instancia por cada llamada
+
+            services.AddTransient<ServiceTransient>();
+            services.AddScoped<ServiceScoped>();
+            services.AddSingleton<ServiceSingleton>();
+            services.AddTransient<ILifeTimeService, LifeTimeService>();
+
+            ///Services Api
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IUsersRepository, UsersRepository>();
+
 
 
 
