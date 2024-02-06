@@ -1,4 +1,5 @@
-﻿using Company.API.Middlewares;
+﻿using Company.API.Filters;
+using Company.API.Middlewares;
 using Company.API.Services;
 using Company.BLL.Services;
 using Company.DAL.DBConnections;
@@ -51,7 +52,13 @@ namespace Company.API
 
             //DB context se instancia en AddScoped para que se cree una nueva instancia por cada request
             services.AddDbContext<CompanyContext>(options => options.UseSqlServer(connectionString)); 
-            services.AddControllers().AddJsonOptions(options =>
+            services.AddControllers(
+                options=>
+                {
+                    //Filtro Global para los errores no controlados
+                    options.Filters.Add<ExceptionFilter>();
+                }
+                ).AddJsonOptions(options =>
             {
                 options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()); // * Para que los enums se serialicen como strings
             });
@@ -85,7 +92,8 @@ namespace Company.API
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IUsersRepository, UsersRepository>();
 
-
+            //filters
+            services.AddTransient<LoggerFilter>();
 
 
         }

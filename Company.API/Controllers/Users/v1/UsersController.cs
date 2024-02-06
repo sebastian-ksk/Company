@@ -1,4 +1,5 @@
-﻿using Company.BLL.Services;
+﻿using Company.API.Filters;
+using Company.BLL.Services;
 using Company.Models.Entities.Users;
 using Company.Models.Models.Users;
 using Microsoft.AspNetCore.Mvc;
@@ -19,10 +20,12 @@ namespace Company.API.Controllers.Users.v1
         }
 
         [HttpGet]
+        [ServiceFilter(typeof(LoggerFilter))]
         public async Task<ActionResult<List<User>>> ActionResult()
         {
             try
             {
+                
                 logger.LogInformation("GetUsers");
                 var users = await _userService.GetUsers();
                 return Ok(users);
