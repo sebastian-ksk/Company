@@ -95,6 +95,8 @@ namespace Company.API
             //filters
             services.AddTransient<LoggerFilter>();
 
+            //Local Services
+            services.AddHostedService<WriteFile>();
 
         }
 
