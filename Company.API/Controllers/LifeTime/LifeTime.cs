@@ -1,4 +1,5 @@
 ﻿using Company.API.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Company.API.Controllers.LifeTime
@@ -19,6 +20,8 @@ namespace Company.API.Controllers.LifeTime
         }
 
         [HttpGet("Guid")]
+        [ResponseCache(Duration =10)]
+        //[Authorize]
         public IActionResult GetGuids()
         {
             return Ok(new

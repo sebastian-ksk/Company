@@ -57,12 +57,19 @@ namespace Company.API
             });
 
             services.AddEndpointsApiExplorer();
+
+            //caching
+            services.AddResponseCaching();
+
            services.AddSwaggerGen(c =>
            {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Company.API", Version = "v1" });
             });
             services.AddMvcCore();
             services.AddEndpointsApiExplorer();
+
+
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer();
 
             //Type services
             // AddScoped: Crea una nueva instancia por cada request
