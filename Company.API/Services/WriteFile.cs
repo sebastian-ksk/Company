@@ -23,7 +23,7 @@ namespace Company.API.Services
         public Task StartAsync(CancellationToken cancellationToken)
         {
             // Inicializa el timer para ejecutar DoWork cada 5 segundos después del inicio inmediato.
-            _timer = new Timer(DoWork, null, TimeSpan.Zero, TimeSpan.FromDays(1)));
+            _timer = new Timer(DoWork, null, TimeSpan.Zero, TimeSpan.FromDays(1));
 
             // Registra un mensaje al iniciar la aplicación.
             Write("WebApi started");

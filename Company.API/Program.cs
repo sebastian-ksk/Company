@@ -16,7 +16,7 @@ namespace Company.API
         Host.CreateDefaultBuilder(args)
          .ConfigureWebHostDefaults(webBuilder =>
          {
-             webBuilder.UseStartup<LoggerHttpResponseMidleware>()
+             webBuilder.UseStartup<Startup>()
                  // Configurar el servicio de logging.
                  .ConfigureLogging(logging =>
                  {

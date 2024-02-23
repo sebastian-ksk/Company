@@ -1,4 +1,6 @@
-﻿using Company.API.Filters;
+﻿using AutoMapper;
+using Company.API.DTOs.Users;
+using Company.API.Filters;
 using Company.BLL.Services;
 using Company.Models.Entities.Users;
 using Company.Models.Models.Users;
@@ -13,10 +15,12 @@ namespace Company.API.Controllers.Users.v1
 
         public readonly IUserService _userService;
         private readonly ILogger<UsersController> logger;
+        private readonly IMapper mapper;
 
-        public UsersController(IUserService service,ILogger<UsersController> logger ) {
+        public UsersController(IUserService service,ILogger<UsersController> logger, IMapper mapper ) {
             _userService = service;
             this.logger = logger;
+            this.mapper = mapper;
         }
 
         [HttpGet]
@@ -53,12 +57,13 @@ namespace Company.API.Controllers.Users.v1
         }
 
         [HttpPost]
-        public ActionResult Post(User user)
+        public ActionResult Post(UserDTO userCration)
         {
             try
             {
+                var user = mapper.Map<User>(userCration);
                 _userService.CreateUser(user);
-                return Ok();
+                return Ok(user);
             }
             catch (System.Exception)
             {

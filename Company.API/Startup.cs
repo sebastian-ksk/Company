@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.AspNetCore.Diagnostics;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
@@ -21,7 +22,7 @@ using System.Text.Json.Serialization;
 
 namespace Company.API
 {
-    public class LoggerHttpResponseMidleware
+    public class Startup
     {
         public IConfiguration Configuration
         {
@@ -32,7 +33,7 @@ namespace Company.API
             get;
         }
 
-        public LoggerHttpResponseMidleware(IConfiguration configuration, IWebHostEnvironment env)
+        public Startup(IConfiguration configuration, IWebHostEnvironment env)
         {
             Configuration = configuration;
             WebHostEnvironment = env;
@@ -75,6 +76,7 @@ namespace Company.API
             services.AddMvcCore();
             services.AddEndpointsApiExplorer();
 
+            services.AddAutoMapper(typeof(Startup));
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer();
 
